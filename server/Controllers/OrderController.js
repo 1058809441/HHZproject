@@ -4,11 +4,9 @@ let OrderService = require('../Services/OrderService');
 //     res.render('index', {});
 // }
 
-module.exports.addOrder = function (req, res) {
-    var data = req.body;
-    console.log(data);
+module.exports.selectAllOrder = function (req, res) {
     let orderService = new OrderService();
-    orderService.addOrders(data,function (ob) {
+    orderService.AllOrder(function (ob) {
         res.json(ob);
     });
 }

@@ -16,11 +16,11 @@ var urlencodedParser = bodyParser.urlencoded({
 
 
 var app = express();
-app.listen(8091,()=>{
+app.listen(8092,()=>{
     console.log("服务器已启动：")
 })
 
-app.use(express.static(__dirname+'/build'));
+// app.use(express.static(__dirname+'/build'));
 
 
 app.use( (req,res,next)=>{
@@ -32,37 +32,23 @@ app.use( (req,res,next)=>{
 })
 
 
+
 let UserController = require('./Controllers/UserController');
-app.get('/user.html', UserController.selectAllUser);//平台端，获取用户数据
-app.post('/idProduct.html' , urlencodedParser, ProductController.selectByID);
-app.post('/updateProduct.html' , urlencodedParser, ProductController.updateProduct);
-app.post('/deleteProduct.html' , urlencodedParser, ProductController.deleteById);
-app.post('/insertProduct.html' , urlencodedParser, ProductController.insertProduct);
-
-app.post('/Login.html',urlencodedParser, UserController.Login);//客户端，登录
-app.post('/Register.html',urlencodedParser, UserController.Register);//客户端，注册
-
+app.get('/users.html', UserController.selectAllUser);
 
 
 
 let OrderController = require('./Controllers/OrderController');
-app.get('/order.html', OrderController.selectAllOrder);//平台端，查看订单信息
+app.get('/orders.html', OrderController.selectAllOrder);
 
-app.post('/AddOrder.html',urlencodedParser, OrderController.addOrder);//客户端下单，即清空购物车
 
 
 let ProductController = require('./Controllers/ProductController');
-app.get('/product.html', ProductController.selectAllProduct);//获取商品信息
-
-
-let ShoppingCarController = require('./Controllers/ShoppingCarController');
-app.post('/AddToShoppingCar.html',urlencodedParser, ShoppingCarController.addToShoppingCar);//客户端，添加到购物车
-app.post('/UpdateShoppingCar.html',urlencodedParser, ShoppingCarController.updateShoppingCar);//客户端，增减购物车内商品的数量
-
-
-
-
-
+app.get('/products.html', ProductController.selectAllProduct);
+app.post('/IdProduct.html' , urlencodedParser, ProductController.selectByID);
+app.post('/updateProduct.html' , urlencodedParser, ProductController.updateProduct);
+app.post('/deleteProduct.html' , urlencodedParser, ProductController.deleteById);
+app.post('/insertProduct.html' , urlencodedParser, ProductController.insertProduct);
 
 
 
