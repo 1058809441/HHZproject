@@ -21,6 +21,31 @@ class OrderModell extends SqlBase {
         });
     }
 
+    //根据用户名查询订单
+    selectOrderByUsername(username,callback) {
+       let sql = `select * from orders where username='${username}'`;
+        this.connection.query(sql, function (err, result) {
+            if (err) {
+                console.log(err.message);
+                return;
+            }
+            callback(result);
+        });
+    }
+
+    //根据商品ID查询商品
+    selectProductByID(id,callback) {
+        let sql = `select productName from product where productID=${id}`;
+         this.connection.query(sql, function (err, result) {
+             if (err) {
+                 console.log(err.message);
+                 return;
+             }
+             callback(result);
+         });
+     }
+
+
     //添加订单
     addOrder(data, callback) {
         console.log("addOrder里面的model")

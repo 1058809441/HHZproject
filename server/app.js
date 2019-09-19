@@ -21,7 +21,7 @@ app.listen(8888,()=>{
     console.log("服务器已启动：8888")
 })
 
-// app.use(express.static(__dirname+'/build'));
+app.use(express.static(__dirname+'/resouce'));
 
 
 app.use( (req,res,next)=>{
@@ -46,8 +46,10 @@ app.post('/register', UserController.Register);
 let OrderController = require('./Controllers/OrderController');
 //管理平台的接口：查询订单信息
 app.get('/orders.html', OrderController.selectAllOrder);
-//客户端的接口：用户下单后增加订单信息
+//客户端的接口：用户下单后增加订单信息、个人中心获取用户订单信息
 app.post('/AddOrder.html', OrderController.AddOrder);
+app.post('/UserOrder.html', OrderController.UserOrder);
+
 
 
 

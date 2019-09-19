@@ -7,7 +7,6 @@ class OrderService extends OrderModel{
     AllOrder(callback) {
         let that = this;
         // console.log("service1");
-
         that.selectAllOrder(function(ob){
             // console.log("service2");
             callback(ob);
@@ -18,11 +17,9 @@ class OrderService extends OrderModel{
         let that = this;
         // console.log("service1");
         data.money = parseInt(data.money);
-
         that.addOrder(data, (ob1) => {
             // console.log("service2");
             that.deleteShoppingCar(data, (ob2) => {
-
                 that.selectUser(data, (ob3) => {
                     // console.log(ob3);
                     var info = {
@@ -31,17 +28,21 @@ class OrderService extends OrderModel{
                         money: data.money,
                         username: data.username
                     }
-
                     that.updateUserInfo(info, (ob4) => {
                         callback(data);
                     });
-                
                 });
-
             });
-
         });
+    }
 
+    getUserOrder(username,callback){
+        let that = this;
+        // console.log("service1");
+        that.selectOrderByUsername(username,function(ob){
+            console.log(ob);
+            callback(ob);
+        });
     }
 
 

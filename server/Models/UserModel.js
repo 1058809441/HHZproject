@@ -43,7 +43,7 @@ class UserModell extends SqlBase {
     }
 
     getShoppingCar(username,callback) {
-        let sql = `select product.*,shopping.* from shopping left join product on product.productID=shopping.productId where username='${username}' `
+        let sql = `select product.*,shopping.* from shopping left join product on product.productID=shopping.productId where username='${username}'`
         
         // console.log(data);
         this.connection.query(sql, function (err, result) {

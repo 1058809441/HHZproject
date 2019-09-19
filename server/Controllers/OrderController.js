@@ -19,3 +19,13 @@ module.exports.AddOrder = function (req, res) {
         res.json(ob);
     });
 }
+
+
+module.exports.UserOrder = function (req, res) {
+    var username = req.body.username;
+    console.log(username);
+    let orderService = new OrderService();
+    orderService.getUserOrder(username,function (ob) {
+        res.json(username);
+    });
+}
