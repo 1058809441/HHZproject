@@ -25,7 +25,7 @@ export default new Router({
           path: '/home', 
           component: Home ,
           children:[
-              { path: '/home/', redirect: '/home/home_mid' },
+              { path: '/home', redirect: '/home/home_mid' },
               { path: '/home/home_mid',  component: Home_mid },
               { path: '/home/aboutus',  component: Aboutus },
               { path: '/home/purchase', component: Purchase },

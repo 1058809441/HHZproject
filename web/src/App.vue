@@ -27,8 +27,8 @@ body {
 
 /* router-link标签默认类名 */
 .router-link-active {
-  color: white;
-  background-color: tomato;
+  text-decoration: none;
+}a{
   text-decoration: none;
 }
 </style>

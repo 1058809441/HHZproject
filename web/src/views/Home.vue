@@ -3,7 +3,7 @@
     <!-- 主页：顶部、中间部分（包括轮播图）、尾部 -->
     <div id="top">
       <div class="icon">
-        <img src="../assets/logo.png" alt />
+        <img src="../assets/icon.png" alt />
       </div>
       <el-menu
         :default-active="activeIndex"
@@ -14,26 +14,32 @@
         text-color="#fff"
         active-text-color="#58A8FB"
         >
-        <el-menu-item >Home</el-menu-item>
+        <el-menu-item ><router-link to="/home/home_mid">Home</router-link></el-menu-item>
         <el-menu-item > <router-link to="/home/purchase">Purchase</router-link></el-menu-item>
         <el-menu-item ><router-link to="/home/aboutus">About us</router-link></el-menu-item>
         <el-menu-item   @click="toUser">个人中心</el-menu-item>
-      </el-menu><div class="line"></div>
+      </el-menu>
       <div class>
         <el-input placeholder="请输入" v-model="input3">
           <i slot="suffix" class="el-input__icon el-icon-search"></i>
         </el-input>
       </div>
       <div class="login">
-        <a href="#">Login | Register</a>
-      </div>s   
+        <router-link to="/login">Login</router-link>       
+        <router-link to="/register">|register</router-link>       
+      </div>   
     </div>
     <router-view></router-view> 
+    <Footer></Footer>
   </div>
 </template>
 
 <script>
+import Footer from './Footer.vue'
 export default {
+  components:{
+    Footer
+  },
   data() {
     return {
       activeIndex: "1",
@@ -60,7 +66,6 @@ export default {
 @my_background: #545c64;
 #top {
   width: @my_width;
-  // height: 90px;
   background: @my_background;
 
   display: flex;
@@ -78,4 +83,9 @@ export default {
     // vertical-align: middle;
   }
 }
+.el-menu.el-menu--horizontal {
+    border-bottom: solid 0px #e6e6e6 !important;
+
+}
+
 </style>

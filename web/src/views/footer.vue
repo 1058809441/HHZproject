@@ -1,18 +1,15 @@
 
 <template>
   <div id="footer">
-   
+   这是尾巴
   </div>
 </template>
 
 <script>
-
-// import Home from './components/Home.vue'
-
 export default {
   name: 'footer',
   components: {
-    // Home
+    
   }
 }
 </script>
