@@ -7,7 +7,6 @@
         />
         <div>个人中心</div>
         <div @click="toHome">首页</div>
-        <!-- <div @click="toCart">购物车</div> -->
         <router-link to="/users/center">个人中心</router-link>
         <router-link to="/users/cart">购物车</router-link>
         <a @click="toLogin">登录</a>
