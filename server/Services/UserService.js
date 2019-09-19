@@ -18,14 +18,14 @@ class UserService extends UserModel{
         that.Login(data, function (ob1) {
             // console.log(ob);
             // console.log(ob[0]);
-            var result = {
-                user_name: data.user_name,
+            let result = {
+                username: data.checkName,
                 ifLogin: false,
                 shoppingCar: []
             }
-            if (ob1[0] && ob1[0].user_password == data.user_password) {
+            if (ob1[0] && ob1[0].password == data.pass) {
                 result.ifLogin = true;
-                that.getShoppingCar(data.user_name, function (ob2) {
+                that.getShoppingCar(data.checkName, function (ob2) {
                     result.shoppingCar = ob2;
                     callback(result);
                 })
@@ -39,8 +39,8 @@ class UserService extends UserModel{
 
         let that = this;
         that.selectByUserName(data, function (ob1) {
-            var result = {
-                user_name: "",
+            let result = {
+                username: "",
                 ifLogin: false,
                 shoppingCar: []
             }
@@ -52,7 +52,7 @@ class UserService extends UserModel{
             } else {
                 result.ifLogin = true;
                 that.Register(data, function (ob2) {
-                    result.user_name = data.user_name;
+                    result.username = data.checkName;
                     result.ifLogin = true;
                     callback(result);
 

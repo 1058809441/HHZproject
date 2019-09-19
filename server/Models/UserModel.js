@@ -30,7 +30,7 @@ class UserModell extends SqlBase {
     }
 
     Login(data,callback) {
-        let sql = `select password from user where username='${data.username}'`;
+        let sql = `select password from user where username='${data.checkName}'`;
         // console.log(data);
         // callback("yes")
         this.connection.query(sql, function (err, result) {
@@ -43,7 +43,7 @@ class UserModell extends SqlBase {
     }
 
     getShoppingCar(username,callback) {
-        let sql = `select product.*,shopping.* from shopping left join product on product.productID=shopping.productID where username='${username}' order by productID`
+        let sql = `select product.*,shopping.* from shopping left join product on product.productID=shopping.productId where username='${username}' `
         
         // console.log(data);
         this.connection.query(sql, function (err, result) {
@@ -51,13 +51,13 @@ class UserModell extends SqlBase {
                 console.log(err.message);
                 return;
             }
-            console.log(result);
+            // console.log(result);
             callback(result);
         });
     }
 
     Register(data,callback) {
-        let sql = `insert into user(username,password,messageCount,orderCount,orderSpent) values('${data.username}','${data.password}',0,0,0)`;
+        let sql = `insert into user(username,password,messageCount,orderCount,orderSpent) values('${data.checkName}','${data.pass}',0,0,0)`;
         this.connection.query(sql, function (err, result) {
             if (err) {
                 console.log(err.message);

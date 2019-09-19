@@ -1,28 +1,34 @@
 <template>
   <div id="app">
-    <img alt="Vue logo" src="./assets/logo.png">
-    <HelloWorld msg="Welcome to Your Vue.js App"/>
+    <!-- <router-link to='/home'>首页</router-link> -->
+    <!-- <router-link to='/login' tag='span'>登录</router-link> -->
+    <!-- <router-link to='/register'>注册</router-link> -->
+    <!-- <router-link to='/users'>个人中心</router-link> -->
+    <!-- 这是vue-router提供的占位符，由路由规则匹配到的组件就会展示在这里面 -->
+    <router-view></router-view>
   </div>
 </template>
 
 <script>
-import HelloWorld from './components/HelloWorld.vue'
-
 export default {
-  name: 'app',
-  components: {
-    HelloWorld
-  }
-}
+  name: "app"
+};
 </script>
 
 <style>
+body {
+  padding: 0;
+  margin: 0;
+  background-color: aliceblue;
+}
 #app {
-  font-family: 'Avenir', Helvetica, Arial, sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-  text-align: center;
-  color: #2c3e50;
-  margin-top: 60px;
+  color: black;
+}
+
+/* router-link标签默认类名 */
+.router-link-active {
+  color: white;
+  background-color: tomato;
+  text-decoration: none;
 }
 </style>
