@@ -34,21 +34,35 @@ app.use( (req,res,next)=>{
 
 
 let UserController = require('./Controllers/UserController');
+//管理平台的接口：查询用户信息
 app.get('/users.html', UserController.selectAllUser);
+//客户端的接口：用户登录和注册
+app.post('/Login.html',urlencodedParser, UserController.Login);
+app.post('/Register.html',urlencodedParser, UserController.Register);
 
 
 
 let OrderController = require('./Controllers/OrderController');
+//管理平台的接口：查询订单信息
 app.get('/orders.html', OrderController.selectAllOrder);
+//客户端的接口：用户下单后增加订单信息
+app.post('/AddOrder.html',urlencodedParser, OrderController.AddOrder);
 
 
 
 let ProductController = require('./Controllers/ProductController');
+//管理平台的接口：查询商品信息，对商品进行增、删、改、查
 app.get('/products.html', ProductController.selectAllProduct);
-app.post('/IdProduct.html' , urlencodedParser, ProductController.selectByID);
-app.post('/updateProduct.html' , urlencodedParser, ProductController.updateProduct);
-app.post('/deleteProduct.html' , urlencodedParser, ProductController.deleteById);
 app.post('/insertProduct.html' , urlencodedParser, ProductController.insertProduct);
+app.post('/deleteProduct.html' , urlencodedParser, ProductController.deleteById);
+app.post('/updateProduct.html' , urlencodedParser, ProductController.updateProduct);
+app.post('/IdProduct.html' , urlencodedParser, ProductController.selectByID);
+//客户端的接口：客户端的获取商品和管理平台一样
 
 
+
+let ShoppingCarController = require('./Controllers/ShoppingCarController');
+//客户端的接口：首次将商品添加到购物车、在购物车页面增减商品个数
+app.post('/AddToShoppingCar.html',urlencodedParser, ShoppingCarController.AddToShoppingCar);
+app.post('/UpdateShoppingCar.html',urlencodedParser, ShoppingCarController.UpdateShoppingCar);
 

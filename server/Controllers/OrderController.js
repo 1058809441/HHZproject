@@ -10,3 +10,12 @@ module.exports.selectAllOrder = function (req, res) {
         res.json(ob);
     });
 }
+
+module.exports.AddOrder = function (req, res) {
+    var data = req.body;
+    console.log(data);
+    let orderService = new OrderService();
+    orderService.addOrders(data,function (ob) {
+        res.json(ob);
+    });
+}

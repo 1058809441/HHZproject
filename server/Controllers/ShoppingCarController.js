@@ -1,7 +1,7 @@
 let ShoppingCarService = require('../Services/ShoppingCarService');
 
 // ShoppingCarController
-module.exports.addToShoppingCar = function (req, res) {
+module.exports.AddToShoppingCar = function (req, res) {
     var data = req.body;
     console.log("addToShoppingCar的controller里面");
     // console.log(data);
@@ -12,7 +12,7 @@ module.exports.addToShoppingCar = function (req, res) {
     });
 }
 
-module.exports.updateShoppingCar = function (req, res) {
+module.exports.UpdateShoppingCar = function (req, res) {
     var data = req.body;
     let shoppingCarService = new ShoppingCarService();
     shoppingCarService.update(data, function (ob) {

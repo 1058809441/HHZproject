@@ -12,8 +12,38 @@ class OrderService extends OrderModel{
             // console.log("service2");
             callback(ob);
         });
+    }
+
+    addOrders(data, callback) {
+        let that = this;
+        // console.log("service1");
+        data.money = parseInt(data.money);
+
+        that.addOrder(data, (ob1) => {
+            // console.log("service2");
+            that.deleteShoppingCar(data, (ob2) => {
+
+                that.selectUser(data, (ob3) => {
+                    // console.log(ob3);
+                    var info = {
+                        oldMoney: ob3[0].orderSpent,
+                        count: ob3[0].orderCount,
+                        money: data.money,
+                        username: data.username
+                    }
+
+                    that.updateUserInfo(info, (ob4) => {
+                        callback(data);
+                    });
+                
+                });
+
+            });
+
+        });
 
     }
+
 
 }
 
