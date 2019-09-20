@@ -7,7 +7,7 @@ class ShoppingCarModel extends SqlBase {
     }
 
     addToShoppingCar(data, callback) {
-        let sql = `insert into shopping(username,productID,count) values('${data.username}',${data.productID},1)`;
+        let sql = `insert into shopping(username,productId,productName,productCount,productImg) values('${data.username}',${data.productID},'${data.productName}',1,${data.productImg})`;
         this.connection.query(sql, function (err, result) {
             if (err) {
                 console.log(err.message);
@@ -18,11 +18,9 @@ class ShoppingCarModel extends SqlBase {
         });
     }
 
-    //首页界面的修改购物车  使用的这个接口
-    updateToShoppingCar1(data, callback) {
-        data.count = parseInt(data.count);
-        // console.log(data);
-        let sql = `update shopping set count=${data.count} where productID=${data.productID}`;
+    //根据用户名获取购物车信息的商品ID
+    selectByUsername(username, callback) {
+        let sql = ` select productId from shopping where username='${username}'`;
         this.connection.query(sql, function (err, result) {
             if (err) {
                 console.log(err.message);
@@ -33,22 +31,41 @@ class ShoppingCarModel extends SqlBase {
         });
     }
 
-    //购物车界面的修改购物车  使用的这个接口
-    updateToShoppingCar2(data, callback) {
+    //根据用户名和商品ID搜索商品数量
+    selectProductCount(data, callback) {
+        let sql = ` select productCount from shopping where username='${data.username}' and where productId=${data.productID}`;
+        this.connection.query(sql, function (err, result) {
+            if (err) {
+                console.log(err.message);
+                return;
+            }
+            // console.log(result);
+            callback(result);
+        });
+    }
+
+
+
+    //修改指定购物车信息的商品数量
+    updateToShoppingCar(data, callback) {
         var sql = "";
-        if(data.tag == 1){
-            data.count++ ;
-            sql = `update shopping set count=${data.count} where ID='${data.ID}'`;
-        }else if(data.tag == -1){
-            data.count-- ;
-            sql = `update shopping set count=${data.count} where ID='${data.ID}'`;
+        if (data.tag == 1) {
+            data.oldCount++;
+            sql = `update shopping set count=${data.productCount} where productId=${data.productID}`;
+        } else if (data.oldCount <= 1) {
+            callback("数量为1，不能再减少了，选择删除操作才能减为1");
+            return
+        }
+        else if (data.tag == -1 && data.oldCount > 1) {
+            data.oldCount--;
+            sql = `update shopping set count=${data.productCount} where productId=${data.productID}`;
         }
         this.connection.query(sql, function (err, result) {
             if (err) {
                 console.log(err.message);
                 return;
             }
-            // console.log(result);
+            console.log("将数量修改为了" + data.oldCount);
             callback(result);
         });
     }

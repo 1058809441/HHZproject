@@ -8,6 +8,14 @@ module.exports.selectAllProduct = function (req, res) {
     });
 }
 
+module.exports.selectAllLunbo = function (req, res) {
+    let productService = new ProductService();
+    productService.AllLunbo(function (ob) {
+        res.json(ob);
+    });
+}
+
+
 module.exports.selectByID = function (req, res) {
     // console.log(req.body);
     let id = parseInt(req.body.id);

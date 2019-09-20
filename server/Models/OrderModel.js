@@ -23,7 +23,7 @@ class OrderModell extends SqlBase {
 
     //根据用户名查询订单
     selectOrderByUsername(username,callback) {
-       let sql = `select * from orders where username='${username}'`;
+       let sql = `select orderID,username,productName,productCount,orderMoney,orderTime from orders where username='${username}'`;
         this.connection.query(sql, function (err, result) {
             if (err) {
                 console.log(err.message);

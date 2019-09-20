@@ -11,6 +11,13 @@ class ProductService extends ProductModel{
         });
     }
 
+    AllLunbo(callback) {
+        let that = this;
+        that.selectAllLunbo(function(ob){
+            callback(ob);
+        });
+    }
+
     ByID(id,callback) {
         let that = this;
         that.selectById(id,function(ob){

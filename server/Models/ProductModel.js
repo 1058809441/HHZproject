@@ -21,6 +21,18 @@ class ProductModell extends SqlBase {
         });
     }
 
+    //查询轮播
+    selectAllLunbo(callback) {
+        let sql = "select * from lunbo";
+        this.connection.query(sql, function (err, result) {
+            if (err) {
+                console.log(err.message);
+                return;
+            }
+            callback(result);
+        });
+    }
+
     //根据id查询商品
     selectById(id,callback) {
         let sql = `select * from product where productID=${id}`;
