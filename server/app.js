@@ -47,25 +47,27 @@ let OrderController = require('./Controllers/OrderController');
 //管理平台的接口：查询订单信息
 app.get('/orders.html', OrderController.selectAllOrder);
 //客户端的接口：用户下单后增加订单信息、个人中心获取用户订单信息
-app.post('/AddOrder.html', OrderController.AddOrder);
-app.post('/UserOrder.html', OrderController.UserOrder);
+app.post('/AddOrder', OrderController.AddOrder);
+app.post('/UserOrder', OrderController.UserOrder);
 
 
 
 
 let ProductController = require('./Controllers/ProductController');
 //管理平台的接口：查询商品信息，对商品进行增、删、改、查
-app.get('/products.html', ProductController.selectAllProduct);
+app.get('/products', ProductController.selectAllProduct);
 app.post('/insertProduct.html' , ProductController.insertProduct);
 app.post('/deleteProduct.html' , ProductController.deleteById);
 app.post('/updateProduct.html' , ProductController.updateProduct);
 app.post('/IdProduct.html' , ProductController.selectByID);
 //客户端的接口：客户端的获取商品和管理平台一样
-
+//客户端获取轮播图：
+app.get('/lunbo', ProductController.selectAllLunbo);
 
 
 let ShoppingCarController = require('./Controllers/ShoppingCarController');
-//客户端的接口：首次将商品添加到购物车、在购物车页面增减商品个数
-app.post('/AddToShoppingCar.html', ShoppingCarController.AddToShoppingCar);
-app.post('/UpdateShoppingCar.html', ShoppingCarController.UpdateShoppingCar);
+//客户端的接口：首次将商品添加到购物车(原来购物车里面没有的)、在购物车页面增减商品个数或其他页面添加到购物车
+app.post('/AddToShoppingCar', ShoppingCarController.AddToShoppingCar);
+app.post('/UpdateShoppingCar', ShoppingCarController.UpdateShoppingCar);
+
 
