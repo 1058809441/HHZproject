@@ -1,6 +1,7 @@
 
 <template>
   <div class="mid">
+     <video src="https://static1.gotokeep.com/homepage/5s.mp4" muted autoplay loop></video>
     <Slider></Slider>
     <div class="goods">
       <div class="first">
@@ -48,6 +49,10 @@ export default {
 </script>
 
 <style lang="less" scoped>
+video{
+  position: relative;
+  width: 100%;
+}
 .goods {
   width: 100%;
   height: 400px;
@@ -58,7 +63,7 @@ export default {
 .goods > div {
   width: 300px;
   height: 400px;
-  background-color: lightblue;
+  // background-color: lightblue;
 }
 .lesson {
   margin-top: 30px;

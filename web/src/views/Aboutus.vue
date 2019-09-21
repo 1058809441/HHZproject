@@ -1,6 +1,34 @@
 
 <template>
   <div id="aboutus">
+    <!-- <div id="top">
+      <div class="icon">
+        <img src="../assets/icon.png" alt />
+      </div>
+      <el-menu
+        :default-active="activeIndex"
+        class="el-menu-demo"
+        mode="horizontal"
+        @select="handleSelect"
+        background-color="transparent"
+        text-color="#fff"
+        active-text-color="#58A8FB"
+        >
+        <el-menu-item ><router-link to="/home/home_mid">Home</router-link></el-menu-item>
+        <el-menu-item @click="toCommunity">社区</el-menu-item>
+        <el-menu-item ><router-link to="/home/aboutus">About us</router-link></el-menu-item>
+        <el-menu-item   @click="toUser">个人中心</el-menu-item>
+      </el-menu>
+      <div class>
+        <el-input placeholder="请输入" v-model="input3">
+          <i slot="suffix" class="el-input__icon el-icon-search"></i>
+        </el-input>
+      </div>
+     <div class="login">
+        <router-link to="/login">Login</router-link>       
+        <router-link to="/register">|register</router-link>       
+      </div>
+    </div> -->
     <h2>Aboutus</h2>
     <div class="contain1">
       <div class="contain1_left"></div>
@@ -92,12 +120,45 @@ export default {
         }
       ]
     };
-  }
+  },
+  // methods:{
+  //   toCommunity()
+  // }
 };
 </script>
 
 
 <style lang="less" scoped>
+@my_width: 100%;
+@my_background: transparent;
+#top {
+  width: @my_width;
+  background: @my_background;
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+  z-index:1;
+  position: absolute;
+  top: 0px;
+}
+.el-menu.el-menu--horizontal{
+  border-bottom:1px solid transparent;
+}
+
+.icon {
+  width: 50px;
+  height: 50px;
+  margin-top: 6px;
+  img {
+    width: @my_width;
+    height: 100%;
+  }
+}
+
+.login a{
+  text-decoration: none;
+  color:white;
+}
 // 公共宽
 @my_width: 90%;
 h2 {

@@ -1,6 +1,6 @@
 <template>
   <div>
-      <video src="https://static1.gotokeep.com/homepage/5s.mp4" muted autoplay loop></video>
+      <!-- <video src="https://static1.gotokeep.com/homepage/5s.mp4" muted autoplay loop></video> -->
     <!-- 主页：顶部、中间部分（包括轮播图）、尾部 -->
     <div id="top">
       <div class="icon">
@@ -78,10 +78,10 @@ export default {
 .el-menu.el-menu--horizontal{
   border-bottom:1px solid transparent;
 }
-video{
-  position: relative;
-  width: 100%;
-}
+// video{
+//   position: relative;
+//   width: 100%;
+// }
 .icon {
   width: 50px;
   height: 50px;
