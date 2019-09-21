@@ -7,6 +7,7 @@ import 'element-ui/lib/theme-chalk/index.css'
 //引入ajax插件
 import axios from 'axios'
 Vue.prototype.axios = axios
+// 设置请求的根路径
 axios.defaults.baseURL = "http://localhost:8888"
 
 // 引入路由文件
