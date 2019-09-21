@@ -1,5 +1,6 @@
 <template>
   <div>
+      <video src="https://static1.gotokeep.com/homepage/5s.mp4" muted autoplay loop></video>
     <!-- 主页：顶部、中间部分（包括轮播图）、尾部 -->
     <div id="top">
       <div class="icon">
@@ -10,7 +11,7 @@
         class="el-menu-demo"
         mode="horizontal"
         @select="handleSelect"
-        background-color="#545c64"
+        background-color="transparent"
         text-color="#fff"
         active-text-color="#58A8FB"
         >
@@ -24,23 +25,20 @@
           <i slot="suffix" class="el-input__icon el-icon-search"></i>
         </el-input>
       </div>
-      <div class="login">
+     <div class="login">
         <router-link to="/login">Login</router-link>       
         <router-link to="/register">|register</router-link>       
-      </div>   
+      </div>
     </div>
-    <router-view></router-view> 
-    <!-- 回到顶部的小三角。页面看不到？ -->
-    <el-backtop target=".page-component__scroll .el-scrollbar__wrap"></el-backtop>
-
-    <Footer></Footer>
+    <router-view></router-view>
+    <Footer></Footer> 
   </div>
 </template>
 
 <script>
-import Footer from './Footer.vue'
+import Footer from "./Footer.vue";
 export default {
-  components:{
+   components: {
     Footer
   },
   data() {
@@ -56,8 +54,6 @@ export default {
      toLogin() {
       this.$router.push("/login");
     },
-    
-    
     handleSelect(key, keyPath) {
       console.log(key, keyPath);
     }
@@ -66,16 +62,24 @@ export default {
 </script>
 <style lang="less" scoped>
 @my_width: 100%;
-@my_background: #545c64;
+@my_background: transparent;
 #top {
   width: @my_width;
   background: @my_background;
-
   display: flex;
   justify-content: space-around;
   align-items: center;
+  z-index:1;
+  position: absolute;
+  top: 0px;
 }
-
+.el-menu.el-menu--horizontal{
+  border-bottom:1px solid transparent;
+}
+video{
+  position: relative;
+  width: 100%;
+}
 .icon {
   width: 50px;
   height: 50px;
@@ -83,12 +87,11 @@ export default {
   img {
     width: @my_width;
     height: 100%;
-    // vertical-align: middle;
   }
 }
-.el-menu.el-menu--horizontal {
-    border-bottom: solid 0px #e6e6e6 !important;
 
+.login a{
+  text-decoration: none;
+  color:white;
 }
-
 </style>
