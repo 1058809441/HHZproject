@@ -16,33 +16,35 @@ import Home_mid from './views/Home_mid'       //首页中间部分
 
 
 export default new Router({
-  mode: 'history',
-  base: process.env.BASE_URL,
-  routes: [
-      { path: '/', redirect:'/home' },//此处的redirect是为了使页面一加载出来就重定向到login路径的组件去
-      { 
-          path: '/home', 
-          component: Home ,
-          children:[
-              { path: '/home', redirect: '/home/home_mid' },
-              { path: '/home/home_mid',  component: Home_mid },
-              { path: '/home/aboutus',  component: Aboutus },
-              { path: '/home/community', component: Community },
-          ]
-      },
-      { path: '/login', component: Login },
-      { path: '/register', component: Register },
-      { 
-          path: '/users', 
-          component: Users,
-          children:[
-              { path: '/users/', redirect: '/users/center' },
-              { path: '/users/center', component: Center },
-              { path: '/users/cart', component: Cart }
+    mode: 'history',
+    base: process.env.BASE_URL,
+    routes: [
+        { path: '/', redirect: '/home' },//此处的redirect是为了使页面一加载出来就重定向到login路径的组件去
+        {
+            path: '/home',
+            component: Home,
+            children: [
+                { path: '/home', redirect: '/home/home_mid' },
+                { path: '/home/home_mid', component: Home_mid },
+                { path: '/home/aboutus', component: Aboutus },
+                { path: '/home/community', component: Community },
+            ]
+        },
+        //   { path: '/login', component: Login },
+        //   { path: '/register', component: Register },
+        {
+            path: '/users',
+            component: Users,
+            children: [
+                { path: '/users/', redirect: '/users/center' },
+                { path: '/users/center', component: Center },
+                { path: '/users/cart', component: Cart },
+                { path: '/users/login', component: Login },
+                { path: '/users/register', component: Register },
 
-          ]
-      },
-      { path: '/cart', component: Cart },    
+            ]
+        },
+        { path: '/cart', component: Cart },
 
-  ]
+    ]
 })
