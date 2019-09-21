@@ -65,13 +65,13 @@ export default {
       ruleForm: {
         checkName: "",
         pass: "",
-        checkPass: "",
+        checkPass: ""
       },
       ReCode: [],
       rules2: {
         checkName: [{ validator: validateName, trigger: "blur" }],
         pass: [{ validator: validatePass, trigger: "blur" }],
-        checkPass: [{ validator: validatePass2, trigger: "blur" }],
+        checkPass: [{ validator: validatePass2, trigger: "blur" }]
       }
     };
   },
@@ -79,27 +79,17 @@ export default {
     submitForm(formName) {
       this.$refs[formName].validate(valid => {
         if (valid) {
-          window.console.log("提交成功!");
+          window.console.log(this.ruleForm, "提交成功!");
           this.axios
             .post("/register", this.ruleForm)
             .then(res => {
               window.console.log(res.data);
-              if(res.data.ifLogin==true){
-                alert("注册成功")
+              if (res.data.ifLogin == true) {
+                alert("注册成功");
                 this.$router.push("/login");
               }
-              // this.ReCode = res.data.code;
-              // if (this.ReCode == 1) {
-              //   alert("注册成功");
-              //   this.$router.push("/login");
-              //   alert("请登录注册好的账号");
-              // } else if (this.ReCode == -1) {
-              //   alert("用户已存在");
-              // } else {
-              //   alert("注册失败");
-              // }
             })
-            .catch(function(error) {
+            .catch(error => {
               window.console.log(error);
             });
         } else {
@@ -107,13 +97,12 @@ export default {
           return false;
         }
       });
-
-      window.console.log(this.ruleForm);
     },
+
     resetForm(formName) {
       this.$refs[formName].resetFields();
     },
-    toLogin(){
+    toLogin() {
       this.$router.push("/login");
     }
   },
@@ -125,8 +114,19 @@ export default {
   width: 400px;
   text-align: center;
   padding: 100px 100px 100px 50px;
-  background-color: white;
-  border: 1px solid white;
+  /* background-color: white; */
+  /* border: 1px solid white; */
   margin: 0 auto;
+}
+.reg a{
+  font-size: 12px;
+  color: rgb(174, 144, 199);
+  margin-left: 90px;
+  cursor: pointer;
+}
+h2 {
+  color: aliceblue;
+  margin-bottom: 30px;
+  margin-left: 90px;
 }
 </style>

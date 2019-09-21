@@ -19,7 +19,7 @@ export default {
 body {
   padding: 0;
   margin: 0;
-  background-color: aliceblue;
+  background-color: lightslategray;
 }
 #app {
   color: black;
@@ -27,8 +27,8 @@ body {
 
 /* router-link标签默认类名 */
 .router-link-active {
-  color: white;
-  background-color: tomato;
+  text-decoration: none;
+}a{
   text-decoration: none;
 }
 </style>
