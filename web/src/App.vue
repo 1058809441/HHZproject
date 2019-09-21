@@ -19,7 +19,7 @@ export default {
 body {
   padding: 0;
   margin: 0;
-  background-color: aliceblue;
+  background-color: lightslategray;
 }
 #app {
   color: black;

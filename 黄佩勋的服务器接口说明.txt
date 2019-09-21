@@ -59,7 +59,7 @@ app.get('/lunbo',
 注释4：锁定购物车的商品数量不能小于1，删除只能点击删除按钮
 app.post('/UpdateShoppingCar',
 请求数据格式：
-{ tag：数字 1 是增加数字 -1 是减少， username，productID，productName，productImg }
+{ tag：数字 1 是增加数字 -1 是减少， username，productID，productType，productName，productImg }
 
 
 

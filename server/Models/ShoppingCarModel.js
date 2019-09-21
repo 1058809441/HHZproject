@@ -7,7 +7,7 @@ class ShoppingCarModel extends SqlBase {
     }
 
     addToShoppingCar(data, callback) {
-        let sql = `insert into shopping(username,productId,productName,productCount,productImg) values('${data.username}',${data.productID},'${data.productName}',1,${data.productImg})`;
+        let sql = `insert into shopping(username,productId,productType,productName,productCount,productImg) values('${data.username}',${data.productID},'${data.productType}','${data.productName}',1,${data.productImg})`;
         this.connection.query(sql, function (err, result) {
             if (err) {
                 console.log(err.message);

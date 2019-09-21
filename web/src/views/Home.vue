@@ -15,10 +15,11 @@
         text-color="#fff"
         active-text-color="#58A8FB"
         >
-        <el-menu-item ><router-link to="/home/home_mid">Home</router-link></el-menu-item>
+        <el-menu-item ><router-link to="/home/home_mid">首页</router-link></el-menu-item>
         <el-menu-item > <router-link to="/home/Community">社区</router-link></el-menu-item>
-        <el-menu-item ><router-link to="/home/aboutus">About us</router-link></el-menu-item>
-        <el-menu-item   @click="toUser">个人中心</el-menu-item>
+        <el-menu-item ><router-link to="/home/aboutus">关于我们</router-link></el-menu-item>
+        <el-menu-item ><router-link to="/users/">个人中心</router-link></el-menu-item>
+        <!-- <el-menu-item   @click="toUser">个人中心</el-menu-item> -->
       </el-menu>
       <div class>
         <el-input placeholder="请输入" v-model="input3">
@@ -26,8 +27,8 @@
         </el-input>
       </div>
      <div class="login">
-        <router-link to="/login">Login</router-link>       
-        <router-link to="/register">|register</router-link>       
+        <router-link to="/login">登录</router-link>       
+        <router-link to="/register">/注册</router-link>       
       </div>
     </div>
     <router-view></router-view>
@@ -36,7 +37,7 @@
 </template>
 
 <script>
-import Footer from "./Footer.vue";
+import Footer from "./footer.vue";
 export default {
    components: {
     Footer
@@ -61,6 +62,7 @@ export default {
 };
 </script>
 <style lang="less" scoped>
+
 @my_width: 100%;
 @my_background: transparent;
 #top {
