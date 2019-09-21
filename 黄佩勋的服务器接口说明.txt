@@ -66,6 +66,16 @@ app.post('/UpdateShoppingCar',
 8、在购物车页面点击 删除 按钮
 
 
+9、用户修改头像
+返回数据格式：
+{ url : “http://ip:port/upload/imgs/fileName .png”, key: '/upload/imgs/fileName' }
+注释：fileName是根据上传时间，后台为上传来的图片进行命名，并保存到后台
+
+
+10、点击下单按钮
+
+11、点击发动态按钮
+
 
 
 

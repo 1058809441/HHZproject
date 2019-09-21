@@ -21,8 +21,6 @@ module.exports.upload = function (req, res) {
                 key: '/upload/imgs/' + fileName
             });
         });
-
-
     });
 
 

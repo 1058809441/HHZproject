@@ -54,6 +54,18 @@ class UserModell extends SqlBase {
         });
     }
 
+    //修改用户头像
+    ChangeImg(username, url, callback) {
+        let sql = `update user set headImg='${url}' where username='${username}'`;
+        this.connection.query(sql, function (err, result) {
+            if (err) {
+                console.log(err.message);
+                return;
+            }
+            callback(result);
+        });
+    }
+
     Login(data, callback) {
         let sql = `select password from user where username='${data.checkName}'`;
         // console.log(data);

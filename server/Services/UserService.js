@@ -12,6 +12,14 @@ class UserService extends UserModel{
         });
     }
 
+    changeImg(username,url,callback) {
+        let that = this;
+
+        that.ChangeImg(username,url,function(ob){
+            callback(ob);
+        });
+    }
+
     
     login(data, callback) {
         let that = this;
