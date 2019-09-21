@@ -63,7 +63,7 @@ video{
 .goods > div {
   width: 300px;
   height: 400px;
-  background-color: lightblue;
+  // background-color: lightblue;
 }
 .lesson {
   margin-top: 30px;

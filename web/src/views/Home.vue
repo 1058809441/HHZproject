@@ -76,10 +76,10 @@ export default {
 .el-menu.el-menu--horizontal{
   border-bottom:1px solid transparent;
 }
-video{
-  position: relative;
-  width: 100%;
-}
+// video{
+//   position: relative;
+//   width: 100%;
+// }
 .icon {
   width: 50px;
   height: 50px;

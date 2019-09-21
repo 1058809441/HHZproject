@@ -3,6 +3,10 @@ import App from './App.vue'
 // 引入组件库
 import ElementUI from 'element-ui'
 import 'element-ui/lib/theme-chalk/index.css'
+// 都知道，bootstrap框架基于jQuery，因此，想使用bootstrap框架，就得先引入jQuery。
+// import $ from 'jquery'
+// import 'bootstrap/dist/css/bootstrap.min.css'
+// import 'bootstrap/dist/js/bootstrap.min'
 
 //引入ajax插件
 import axios from 'axios'
