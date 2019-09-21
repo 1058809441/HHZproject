@@ -8,10 +8,9 @@ import Register from './views/Register' //注册
 import Users from './views/Users'             //个人中心
 import Center from './views/Center' //个人中心
 import Cart from './views/Cart' //购物车
-// import Message from './views/Message'       //社区动态
+import Community from './views/Community'       //社区动态
 // import ProductDetail from './views/ProductDetail'//商品详情
 import Aboutus from './views/Aboutus'       //关于我们
-import Purchase from './views/Purchase'       //购买。。。暂时命名
 import Home_mid from './views/Home_mid'       //首页中间部分
 
 
@@ -28,7 +27,7 @@ export default new Router({
               { path: '/home', redirect: '/home/home_mid' },
               { path: '/home/home_mid',  component: Home_mid },
               { path: '/home/aboutus',  component: Aboutus },
-              { path: '/home/purchase', component: Purchase },
+              { path: '/home/community', component: Community },
           ]
       },
       { path: '/login', component: Login },

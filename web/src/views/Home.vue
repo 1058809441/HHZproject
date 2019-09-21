@@ -15,7 +15,7 @@
         active-text-color="#58A8FB"
         >
         <el-menu-item ><router-link to="/home/home_mid">Home</router-link></el-menu-item>
-        <el-menu-item > <router-link to="/home/purchase">Purchase</router-link></el-menu-item>
+        <el-menu-item > <router-link to="/home/Community">社区</router-link></el-menu-item>
         <el-menu-item ><router-link to="/home/aboutus">About us</router-link></el-menu-item>
         <el-menu-item   @click="toUser">个人中心</el-menu-item>
       </el-menu>
@@ -30,6 +30,9 @@
       </div>   
     </div>
     <router-view></router-view> 
+    <!-- 回到顶部的小三角。页面看不到？ -->
+    <el-backtop target=".page-component__scroll .el-scrollbar__wrap"></el-backtop>
+
     <Footer></Footer>
   </div>
 </template>
