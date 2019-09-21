@@ -1,6 +1,6 @@
 <template>
   <div>
-      <video src="https://static1.gotokeep.com/homepage/5s.mp4" muted autoplay loop></video>
+      <!-- <video src="https://static1.gotokeep.com/homepage/5s.mp4" muted autoplay loop></video> -->
     <!-- 主页：顶部、中间部分（包括轮播图）、尾部 -->
     <div id="top">
       <div class="icon">
