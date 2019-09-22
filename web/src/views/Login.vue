@@ -72,6 +72,11 @@ export default {
               window.console.log(res.data);
               if (res.data.ifLogin == true) {
                 alert("登录成功");
+                this.$store.state.username=res.data.username
+                this.$store.state.ifLogin=res.data.ifLogin
+                this.$store.state.shoppingCar=res.data.shoppingCar
+                this.$store.state.allMessage=res.data.allMessage
+                this.$store.state.myMessage=res.data.myMessage
                 this.$router.push("/home");
               }
             })

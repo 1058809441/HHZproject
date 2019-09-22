@@ -5,37 +5,38 @@
         <p>我的账号</p>
         <hr />
         <div class="user">
-          <!-- <img :src="src" /> -->
-          <!-- 上传图片 -->
-          <img style="width:50,height:50"/>
-          <input
-            type="file"
-            accept="image/gif, image/jpeg, image/jpg, image/png, image/svg"
-            @click="fn"
-          />
-          <!--  -->
-          <!-- <p>用户名：{{username}}</p> -->
+          <img :src="src" />
+
+          <p>用户名：{{username}}</p>
         </div>
       </div>
       <div class="contentson">
         <p>我的钱包</p>
+        <hr />
         <p>余额：￥1000</p>
       </div>
       <!--  -->
       <div class="contentson">
         <p>我的订单</p>
-        <el-table style="width: 100%" v-for="item in tableData" :key="item.orderID">
-          <div>{{item.orderTime}}</div>
-          <!-- <el-table-column fixed prop="date" label="日期" width="150"></el-table-column>
-          <el-table-column prop="name" label="商品" width="300"></el-table-column>
-          <el-table-column prop="count" label="数量(件)" width="150"></el-table-column>
-          <el-table-column prop="money" label="金额(元)" width="150"></el-table-column>-->
-        </el-table>
+        <hr />
+        <div class="myoders">
+          <p>创建时间</p>
+          <p>商品</p>
+          <p>数量</p>
+          <p>价格</p>
+        </div>
+        <div v-for="item in tableData" :key="item.id" class="order">
+          <p>{{item.orderTime}}</p>
+          <p>{{item.productName}}</p>
+          <p>{{item.productCount}}</p>
+          <p>{{item.orderMoney}}</p>
+        </div>
       </div>
     </div>
   </div>
 </template>
 <script>
+<<<<<<< HEAD
 <<<<<<< HEAD
 
 =======
@@ -44,6 +45,8 @@
 // import '../Utils/webuploader/Uploader.swf'
 // import "http://cdn.bootcss.com/jquery/1.11.1/jquery.min.js"
 >>>>>>> 8d608c2faa1844e4443d5000b40954ff82ea76cb
+=======
+>>>>>>> hm的更新9.22
 export default {
   data() {
     return {
@@ -57,8 +60,12 @@ export default {
     this.getTableData();
   },
   methods: {
+<<<<<<< HEAD
     fn() {    },
+=======
+>>>>>>> hm的更新9.22
     getTableData() {
+      
       this.axios
         .post("/orders")
         .then(res => {
@@ -85,30 +92,24 @@ export default {
 }
 .user {
   display: flex;
-  flex-grow: 2;
 }
 
-.file-box {
-  /* position: relative; */
-  display: inline-block;
-}
-.file-box img {
-  width: 50px;
-  height: 50px;
-  border-radius: 50%;
-  /* position: absolute; */
-  /* top: -30px;
-  left: 0; */
-  display: inline-block;
-  border: none;
-}
-.file-box .txt,
-.file-box .file {
-  width: 70px;
-  height: 36px;
-  /* position: absolute; */
-  /* top: -20px; */
-  /* left: 100px; */
+.order {
+  display: flex;
+  background-color: white;
+  padding: 10px;
   text-align: center;
+}
+.order p {
+  width: 250px;
+}
+.myoders {
+  display: flex;
+  background-color: white;
+  padding: 10px;
+  text-align: center;
+}
+.myoders p {
+  width: 250px;
 }
 </style>

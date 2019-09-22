@@ -19,7 +19,7 @@ export default {
 body {
   padding: 0;
   margin: 0;
-  background-color: lightslategray;
+  background-color: rgb(152, 196, 240);
 }
 #app {
   color: black;
