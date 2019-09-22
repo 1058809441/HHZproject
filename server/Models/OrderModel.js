@@ -77,6 +77,18 @@ class OrderModell extends SqlBase {
         });
     }
 
+    //查找用户的购物车
+    selectMyShoppingCar(data, callback) {
+        let sql = `select * from shopping where username='${data.username}'`;
+        this.connection.query(sql, function (err, result) {
+            if (err) {
+                console.log(err.message);
+                return;
+            }
+            callback(result);
+        });
+    }
+
     //获取用户数据
     selectUser(data, callback) {
         let sql = `select * from user where username='${data.username}'`;
@@ -96,9 +108,7 @@ class OrderModell extends SqlBase {
     //修改用户的消费情况
     updateUserInfo(data, callback) {
         // console.log("model1");
-        data.count++;
-        data.money = data.money + data.oldMoney;
-        let sql = `update user set orderCount=${data.count},orderSpent=${data.money} where username='${data.username}'`;
+        let sql = `update user set orderCount=${data.orderCount},orderSpent=${data.orderSpent} where username='${data.username}'`;
         this.connection.query(sql, function (err, result) {
             if (err) {
                 console.log(err.message);

@@ -41,6 +41,14 @@ app.post('/register', UserController.Register);
 
 
 
+let MessageController = require('./Controllers/MessageController');
+//客户端的接口：用户自己的动态，所以用户的动态，用户发表动态
+app.post('/MyMessage', MessageController.MyMessage);
+app.get('/AllMessage', MessageController.AllMessage);
+app.post('/AddMessage', MessageController.AddMessage);
+
+
+
 let OrderController = require('./Controllers/OrderController');
 //管理平台的接口：查询订单信息
 app.get('/orders.html', OrderController.selectAllOrder);
@@ -65,7 +73,7 @@ app.get('/lunbo', ProductController.selectAllLunbo);
 
 let ShoppingCarController = require('./Controllers/ShoppingCarController');
 //客户端的接口：首次将商品添加到购物车(原来购物车里面没有的)、在购物车页面增减商品个数或其他页面添加到购物车
-app.post('/AddToShoppingCar', ShoppingCarController.AddToShoppingCar);
+app.post('/DeleteFromShoppingCar', ShoppingCarController.DeleteFromShoppingCar);
 app.post('/UpdateShoppingCar', ShoppingCarController.UpdateShoppingCar);
 
 

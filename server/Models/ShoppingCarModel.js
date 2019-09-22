@@ -6,14 +6,13 @@ class ShoppingCarModel extends SqlBase {
         super();
     }
 
-    addToShoppingCar(data, callback) {
-        let sql = `insert into shopping(username,productId,productType,productName,productCount,productImg) values('${data.username}',${data.productID},'${data.productType}','${data.productName}',1,${data.productImg})`;
+    deleteFromShopping(data, callback) {
+        let sql = ` delete from shopping where username='${data.username}' and productId=${data.productID}`;
         this.connection.query(sql, function (err, result) {
             if (err) {
                 console.log(err.message);
                 return;
             }
-            // console.log(result);
             callback(result);
         });
     }
