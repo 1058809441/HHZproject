@@ -35,20 +35,7 @@ export default {
           shop: "王小虎",
           count: "1",
           amount: "100"
-        },
-        {
-          date: "2016-05-03",
-          shop: "王小虎",
-          count: "1",
-          amount: "100"
-        },
-        {
-          date: "2016-05-03",
-          shop: "王小虎",
-          count: "1",
-          amount: "100"
-        },
-      
+        }
       ]
     };
   },
