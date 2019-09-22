@@ -77,11 +77,3 @@ app.post('/DeleteFromShoppingCar', ShoppingCarController.DeleteFromShoppingCar);
 app.post('/UpdateShoppingCar', ShoppingCarController.UpdateShoppingCar);
 
 
-
-//图片上传
-let fileController = require('./Controllers/FileController');
-app.post("/upload", multer({
-    dest: __dirname + '/public/upload/imgs/'
-}).array('file'), fileController.upload);
-
-
