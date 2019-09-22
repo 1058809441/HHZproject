@@ -109,7 +109,7 @@ export default {
 }
 .log a{
   font-size: 12px;
-  color: rgb(174, 144, 199);
+  color: white;
   margin-left: 90px;
   cursor: pointer;
 

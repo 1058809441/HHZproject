@@ -36,9 +36,9 @@
   </div>
 </template>
 <script>
-import '../Utils/webuploader/webuploader.css'
-import '../Utils/webuploader/webuploader.css'
-import '../Utils/webuploader/Uploader.swf'
+// import '../Utils/webuploader/webuploader.css'
+// import '../Utils/webuploader/webuploader.css'
+// import '../Utils/webuploader/Uploader.swf'
 // import "http://cdn.bootcss.com/jquery/1.11.1/jquery.min.js"
 export default {
   data() {
