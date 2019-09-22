@@ -30,31 +30,35 @@ class OrderService extends OrderModel {
 
         data.orderMoney = parseInt(data.orderMoney);
 
+        console.log(data.orderTime);
+
         //计算要添加的订单的数据
         that.selectMyShoppingCar(data, (ob) => {
             data.productID = '';
             data.productCount = '';
             data.orderMoney = 0;
-            ob.forEach((element,index) => {
-                if(index == 0){
+            console.log(ob);
+            ob.forEach((element, index) => {
+                if (index == 0) {
                     data.productID += element.productId;
                     data.productCount += element.productCount;
-                }else{
+                } else {
                     data.productID += "/" + element.productId;
                     data.productCount += "/" + element.productCount;
                 }
                 data.orderMoney += element.productPrice * element.productCount;
             });
+            console.log(data);
 
             //添加数据到订单表
-            that.addOrders(data, (ob1) => {
+            that.addOrder(data, (ob1) => {
                 //删除该用户对应的购物车表数据
                 that.deleteShoppingCar(data, (ob2) => {
                     //查询该用户信息
                     that.selectUser(data, (ob3) => {
                         var info = {
                             orderCount: ++ob3[0].orderCount,
-                            orderSpent: data.orderMoney+ob3[0].orderSpent,
+                            orderSpent: data.orderMoney + ob3[0].orderSpent,
                             username: data.username
                         }
                         //修改该用户信息

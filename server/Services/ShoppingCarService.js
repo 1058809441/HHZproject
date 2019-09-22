@@ -17,6 +17,8 @@ class ShoppingCarServise extends ShoppingCarModel {
                     ifInDataBase = true;
                 }
             })
+            console.log("ifInDataBase:");
+            console.log(ifInDataBase);
             //购物车表里面有这个用户的这个商品，增或减商品数量
             if (ifInDataBase) {
                 that.selectProductCount(data, function (ob2) {
@@ -27,13 +29,15 @@ class ShoppingCarServise extends ShoppingCarModel {
                 })
             }
             //购物车表没有这个用户的这个商品且是增加数量，添加到数据库
-            else if (!ifInDataBase && tag == 1) {
+            else if (!ifInDataBase && data.tag == 1) {
+                data.productID = parseInt(data.productID);
+                data.productPrice = parseInt(data.productPrice);
+
                 that.addToShoppingCar(data, function (ob4) {
                     callback(ob4)
                 });
             }
         })
-        callback(ob);
     }
 
     delete(data, callback) {

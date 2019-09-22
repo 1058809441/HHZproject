@@ -26,6 +26,6 @@ module.exports.UserOrder = function (req, res) {
     console.log(username);
     let orderService = new OrderService();
     orderService.getUserOrder(username,function (ob) {
-        res.json(username);
+        res.json(ob);
     });
 }

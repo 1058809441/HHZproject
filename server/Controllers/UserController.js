@@ -22,7 +22,7 @@ module.exports.Login = function (req, res) {
 
 module.exports.Register = function (req, res) {
     var data = req.body;
-    console.log( req.body)
+    console.log( req.body);
     let userService = new UserService();
     userService.register(data,function (ob) {
         res.json(ob);

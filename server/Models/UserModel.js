@@ -32,7 +32,7 @@ class UserModell extends SqlBase {
 
     //根据用户名查询用户信息
     selectByUserName(data, callback) {
-        let sql = `select * from user where username='${data.username}'`;
+        let sql = `select * from user where username='${data.checkName}'`;
         this.connection.query(sql, function (err, result) {
             if (err) {
                 console.log(err.message);
@@ -57,8 +57,6 @@ class UserModell extends SqlBase {
 
     Login(data, callback) {
         let sql = `select password from user where username='${data.checkName}'`;
-        // console.log(data);
-        // callback("yes")
         this.connection.query(sql, function (err, result) {
             if (err) {
                 console.log(err.message);

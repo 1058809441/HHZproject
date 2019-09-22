@@ -53,10 +53,8 @@ class UserService extends UserModel{
                 allMessage: [],
                 myMessage: []
             }
-            // console.log(ob1);
-            // console.log(ob1[0]);
             if (ob1[0]) {
-                callback(result)
+                callback(result);
             } else {
                 result.ifLogin = true;
                 that.Register(data, function (ob2) {
