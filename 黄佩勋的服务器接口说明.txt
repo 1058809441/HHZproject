@@ -19,27 +19,22 @@ app.post('/login',
 返回数据：登陆成功：
 		{ username: "用户名" , ifLogin: true , shoppingCar: [包含该用户所有购物		车信息的数组] , allMessage : [包含所有动态信息的数组] , myMessage : [包		含该用户动态的数组] }
 
-	登陆失败：{ username: "用户名" , ifLogin: false , shoppingCar: [ 空数组 ] }
+	登陆失败：{ username: "用户名" , ifLogin: false , shoppingCar: [ 空数组 ]，myMessage : [空数组] }
 
 
 3、注册
 app.post('/register',
 请求的数据格式：{ checkName: "用户名" , pass: "密码" }
-返回数据：注册成功：{ username: "用户名" , ifLogin: true , shoppingCar: [ 空数组 ]  , allMessage : [包含所有动态信息的数组] , myMessage : [空数组，因为刚刚创建所以还没有动态]  }
-	注册失败：{ username: 空字符串 , ifLogin: false , shoppingCar: [ 空数组 ]  , allMessage : [空数组] , myMessage : [空数组] }
-
-
-4、下单时将订单信息添加到数据库
-app.post('/AddOrder',
-请求的数据格式：{ username: "用户名" ，productID：“1/2/3”，productName：“帽子/手套/护膝”，productCount ：“1/1/1”，money：100 }
-	把所有商品合成一条订单信息
-	只有orderMoney是数字，是总价，其它都是字符串
-	不同商品的名字、数量，用 / 隔开
+返回数据：
+	注册成功：
+{ username: "用户名" , ifLogin: true , shoppingCar: [ 空数组 ]  , allMessage : [包含所有动态信息的数组] , myMessage : [空数组，因为刚刚创建所以还没有动态]  }
+	注册失败：
+{ username: 空字符串 , ifLogin: false , shoppingCar: [ 空数组 ]  , allMessage : [空数组] , myMessage : [空数组] }
 
 
 5、个人中心获取用户自己的订单信息
 app.post('/UserOrder',
-请求数据的格式：{ username：“用户名” }
+请求数据的格式：{ username:"用户名" }
 返回数据：[ 该用户的所有订单数据的数组 { orderID：数字 ， username：“用户名”，productName：“1/2/3”，productCount：“1/1/1”，orderMoney：数字，orderTime“2019/9/17-13:30:00” } ，{ }，{ } ...... ]
 
 
@@ -55,7 +50,8 @@ app.get('/lunbo',
 注释4：锁定购物车的商品数量不能小于1，删除只能点击删除按钮
 app.post('/UpdateShoppingCar',
 请求数据格式：
-{ tag：数字 1 是增加数字 -1 是减少， username，productID，productType，productName，productImg }
+{ tag：数字 1 是增加数字 -1 是减少， username，productID，productName，productPrice，productType，productImg }
+
 
 
 
@@ -95,15 +91,7 @@ app.post('/AddMessage',
 请求数据的格式：
 { username：用户名字符串，content：内容字符串 }
 返回数据的格式：
-{ myMessage：我的动态的数组，allMessage：全部动态的数组 }
-
-
-
-13、用户修改头像
-返回数据格式：
-{ url : “http://ip:port/upload/imgs/fileName .png”, key: '/upload/imgs/fileName' }
-注释：fileName是根据上传时间，后台为上传来的图片进行命名，并保存到后台
-
+{ myMessage：新的我的动态的数组，allMessage：新的全部动态的数组 }
 
 
 
