@@ -51,7 +51,7 @@ app.post('/AddMessage', MessageController.AddMessage);
 
 let OrderController = require('./Controllers/OrderController');
 //管理平台的接口：查询订单信息
-app.get('/orders.html', OrderController.selectAllOrder);
+app.post('/orders', OrderController.selectAllOrder);
 //客户端的接口：用户下单后增加订单信息、个人中心获取用户订单信息
 app.post('/AddOrder', OrderController.AddOrder);
 app.post('/UserOrder', OrderController.UserOrder);

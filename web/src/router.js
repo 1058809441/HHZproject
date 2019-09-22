@@ -30,8 +30,7 @@ export default new Router({
                 { path: '/home/community', component: Community },
             ]
         },
-        //   { path: '/login', component: Login },
-        //   { path: '/register', component: Register },
+
         {
             path: '/users',
             component: Users,
