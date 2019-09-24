@@ -95,7 +95,7 @@ export default {
       this.fullscreenLoading = true;
       setTimeout(() => {
         this.fullscreenLoading = false;
-      }, 000);
+      }, 0);
     },
     openFullScreen() {
       const loading = this.$loading({

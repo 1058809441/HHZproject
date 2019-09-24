@@ -36,10 +36,7 @@
   </div>
 </template>
 <script>
-import '../Utils/webuploader/webuploader.css'
-import '../Utils/webuploader/webuploader.css'
-import '../Utils/webuploader/Uploader.swf'
-// import "http://cdn.bootcss.com/jquery/1.11.1/jquery.min.js"
+
 export default {
   data() {
     return {
@@ -53,37 +50,7 @@ export default {
     this.getTableData();
   },
   methods: {
-    fn() {
-      let uploader = WebUploader.create({
-        // 选完文件后，是否自动上传。
-        auto: true,
-        // swf文件路径
-        swf: "https://cdn.staticfile.org/webuploader/0.1.1/Uploader.swf",
-        // 文件接收服务端。
-        server: "localhost:8888/upload",
-        // 要传递的参数
-        formData: {
-          username: ""
-        },
-        accept: {
-          title: "Images",
-          extensions: "gif,jpg,jpeg,bmp,png",
-          mimeTypes: "image/*"
-        }
-      });
-
-      // 文件上传成功
-      uploader.on("uploadSuccess", function(file, response) {
-        //获得服务器的图片 img
-        let url = response.url;
-        let img = document.getElementById("img1");
-        img.src = url;
-        console.log(url);
-        alert("上传成功！");
-      });
-
-      uploader.upload();
-    },
+    fn() {    },
     getTableData() {
       this.axios
         .post("/orders")
