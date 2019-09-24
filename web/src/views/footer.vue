@@ -97,7 +97,7 @@ export default {
   padding-top: 30px;
   border-bottom: 1px solid #d8d8d8;
   /* padding-bottom: 0; */
-  background: #fff;
+  /* background: #fff; */
   display: block;
 }
 .wrapper {

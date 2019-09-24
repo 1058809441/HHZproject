@@ -36,7 +36,14 @@
   </div>
 </template>
 <script>
+<<<<<<< HEAD
 
+=======
+// import '../Utils/webuploader/webuploader.css'
+// import '../Utils/webuploader/webuploader.css'
+// import '../Utils/webuploader/Uploader.swf'
+// import "http://cdn.bootcss.com/jquery/1.11.1/jquery.min.js"
+>>>>>>> 8d608c2faa1844e4443d5000b40954ff82ea76cb
 export default {
   data() {
     return {

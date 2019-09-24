@@ -1,6 +1,6 @@
 <template>
   <div id="community">
-    <div class="left_box">11112222223333333444</div>
+    <div class="sidebar"></div>
 
     <div class="all">
       <!-- 用户输入框 -->
@@ -13,14 +13,60 @@
             placeholder="请输入内容"
             v-model="textarea2"
             maxlength="400"
-            show-word-limit
-          ></el-input>
-          <div class="kind_left" >
-            <!-- 点击发布会出现全屏加载 -->
-            <el-button type="primary" plain @click="openFullScreen">发布</el-button>
+          >
+           
+          </el-input>
+          <!-- 点击发布会出现全屏加载 -->
+          <div class="kind_right">
+            <el-button style="padding: 6px 18px;" type="primary" plain @click="openFullScreen">发布</el-button>
           </div>
-
-          <div class="kind_right"></div>
+          <div class="kind_left">
+            <el-row :gutter="20">
+              <el-col :span="6">
+                <div class="bg-purple">
+                  <a href="#">
+                    <i class="el-icon-share" style="color:orange"></i>分享
+                  </a>
+                </div>
+              </el-col>
+              <el-col :span="6">
+                <div class="bg-purple">
+                  <a href="#">
+                    <i class="el-icon-camera" style="color:blue"></i>视频
+                  </a>
+                </div>
+              </el-col>
+              <el-col :span="6">
+                <div class="bg-purple">
+                  <a href="#">
+                    <i class="el-icon-s-promotion" style="color:red"></i>地址
+                  </a>
+                </div>
+              </el-col>
+              <el-col :span="6">
+                <div class="bg-purple">
+                  <a href="#">
+                    <i class="el-icon-picture-outline" style="color:yellow"></i>
+                    <!-- <el-upload
+                      class="upload-demo"
+                      action="https://jsonplaceholder.typicode.com/posts/"
+                      :on-preview="handlePreview"
+                      :on-remove="handleRemove"
+                      :before-remove="beforeRemove"
+                      multiple
+                      :limit="3"
+                      :on-exceed="handleExceed"
+                      :file-list="fileList"
+                    >
+                      <el-button size="small" type="primary">图片</el-button>
+                      <div slot="tip" class="el-upload__tip">只能上传jpg/png文件，且不超过500kb</div>
+                    </el-upload> -->
+                    图片
+                  </a>
+                </div>
+              </el-col>
+            </el-row>
+          </div>
         </div>
       </div>
       <!-- 发表的内容 -->
@@ -86,28 +132,51 @@ export default {
           contain: "zheshi 这是内容萨达四大啊",
           detailtime: "12:56"
         }
-      ]
+      ],
+      // 上传图片
+      fileList: []
     };
   },
   methods: {
-    // 加载部分的方法
+    // 显示全屏加载部分的方法
     openFullScreen() {
       this.fullscreenLoading = true;
       setTimeout(() => {
         this.fullscreenLoading = false;
+<<<<<<< HEAD
       }, 0);
+=======
+      }, 1000);
+>>>>>>> 8d608c2faa1844e4443d5000b40954ff82ea76cb
     },
     openFullScreen() {
       const loading = this.$loading({
         lock: true,
         text: "Loading",
         spinner: "el-icon-loading",
-        background: "rgba(0, 0, 0, 0.7)"
+        background: "rgba(0, 0, 0, 0.5)"
       });
       setTimeout(() => {
         loading.close();
       }, 1000);
-    }
+    },
+    // 上传图片
+    // handleRemove(file, fileList) {
+    //   console.log(file, fileList);
+    // },
+    // handlePreview(file) {
+    //   console.log(file);
+    // },
+    // handleExceed(files, fileList) {
+    //   this.$message.warning(
+    //     `当前限制选择 3 个文件，本次选择了 ${
+    //       files.length
+    //     } 个文件，共选择了 ${files.length + fileList.length} 个文件`
+    //   );
+    // },
+    // beforeRemove(file, fileList) {
+    //   return this.$confirm(`确定移除 ${file.name}？`);
+    // }
   }
 };
 </script>
@@ -120,20 +189,23 @@ export default {
 .all {
   width: 80%;
   margin-left: 13%;
-  background: red;
+  background: black;
   padding-top: 10px;
   .user_box {
     // width: 90%;
     height: auto;
-    background: pink;
+    background: #778899;
     margin: 10px auto;
     border-radius: 15px;
     margin: 10px 10px 10px 10px;
     padding: 2px 20px 20px;
+    .user h4 {
+      color: white;
+    }
   }
   .contain {
     height: 300px;
-    background: white;
+    background: #d3dce6;
     border-radius: 15px;
     margin: 10px 10px 10px 10px;
     display: flex;
@@ -153,18 +225,42 @@ export default {
 .el-textarea {
   margin-bottom: 10px;
 }
-.left_box {
+.sidebar {
   width: 10%;
   height: 800px;
-  background: rgb(238, 100, 100);
+  background: #d3dce6;
   position: absolute;
   z-index: 2;
-}.kind_left{
-  float:right;
 }
 .kind_right {
+  float: right;
+}
+// 输入框下面图标表情等-栅格布局
+.el-row {
+  margin-bottom: 20px;
+  &:last-child {
+    margin-bottom: 0;
+  }
+}
+.bg-purple {
+  background: #d3dce6;
+}
+[class*=" el-icon-"],
+[class^="el-icon-"] {
+  margin: auto 10px;
+}
+
+.grid-content {
+  border-radius: 4px;
+  min-height: 36px;
+}
+.row-bg {
+  padding: 10px 0;
+  // background-color: #f9fafc;
+}
+.kind_left {
   width: 80%;
   height: 34px;
-  background: rgb(238, 100, 100);
+  // background: rgb(238, 100, 100);
 }
 </style> 

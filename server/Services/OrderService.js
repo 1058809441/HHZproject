@@ -42,9 +42,11 @@ class OrderService extends OrderModel {
                 if (index == 0) {
                     data.productID += element.productId;
                     data.productCount += element.productCount;
+                    data.productName += element.productName;
                 } else {
                     data.productID += "/" + element.productId;
                     data.productCount += "/" + element.productCount;
+                    data.productName += "/" + element.productName;
                 }
                 data.orderMoney += element.productPrice * element.productCount;
             });

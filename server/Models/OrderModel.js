@@ -50,7 +50,7 @@ class OrderModell extends SqlBase {
     addOrder(data, callback) {
         console.log("addOrder里面的model")
         console.log(data);
-        let sql = `insert into orders(username,productID,productCount,orderTime,orderMoney) values('${data.username}','${data.productID}','${data.productCount}','${data.orderTime}',${data.orderMoney})`;
+        let sql = `insert into orders(username,productID,productName,productCount,orderTime,orderMoney) values('${data.username}','${data.productID}','${data.productName}','${data.productCount}','${data.orderTime}',${data.orderMoney})`;
         this.connection.query(sql, function (err, result) {
             if (err) {
                 console.log(err.message);
