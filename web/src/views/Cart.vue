@@ -9,21 +9,21 @@
       <p>操作</p>
     </div>
     <hr />
-    <div v-for="(item,index) in tableData" :key="item.ID" class="mycart">
-      <img :src="item.productImg" />
-      <p style="padding-left: 80px">{{item.productName}}</p>
+    <div v-for="(v,index) in tableData" :key="v.ID" class="mycart">
+      <img :src="v.productImg" style="width:100px height:100px" />
+      <p style="padding-left: 80px">{{v.productName}}</p>
       <p class="counter">
         <input type="button" value="-" @click="update(-1,index)" />
-        <input type="text" v-model="item.productCount" class="inp" />
+        <input type="text" v-model="v.productCount" class="inp" />
         <input type="button" value="+" @click="update(1,index)" />
       </p>
-      <p>{{item.productPrice}}</p>
-      <p @click="del" class="del">删除</p>
+      <p>{{v.productPrice}}</p>
+      <p @click="del(index)" class="del">删除</p>
     </div>
     <div class="operat">
-      <p @click="emptyCart">清空购物车</p>
-      <p @click="Total">总计：￥ {{this.total}} </p>
-      <div>结算</div>
+      <!-- <p style="padding-left:100px">总计：￥ {{total | totalFilter(tableData) }}</p> -->
+      <p style="padding-left:100px">总计：￥ {{total}}</p>
+      <div @click="settlement(total)">结算</div>
     </div>
   </div>
 </template>
@@ -37,21 +37,84 @@ export default {
       total: 0
     };
   },
+  // filters: {
+  //   totalFilter: (value, v) => {
+  //     // console.log(value, v);
+  //     let money = 0;
+  //     v.forEach(item => {
+  //       // console.log(item);
+
+  //       let a = parseInt(item.productPrice) * parseInt(item.productCount);
+  //       money += a;
+  //     });
+  //     return money;
+  //   }
+  // },
   mounted() {
-    this.Total();
+    this.mytotal();
   },
+  beforeUpdate() {
+    this.mytotal();
+  },
+
+
   methods: {
+    mytotal() {
+      let money = 0;
+      this.tableData.forEach(item => {
+        // console.log(item);
+
+        let a = parseInt(item.productPrice) * parseInt(item.productCount);
+        money += a;
+      });
+      this.total = money;
+      return money;
+    },
+
+    settlement(total) {
+      alert("去结算,一共" + total + "元");
+      this.$store.state.shoppingCar = [];
+
+      this.axios
+        .post("/AddOrder", {
+          username: this.$store.state.username
+        })
+        .then(res => {
+          console.log(res.data);
+          this.$router.push("/users/center");
+        })
+        .catch(error => {
+          window.console.log(error);
+        });
+    },
     handleDelete(index, row) {
       console.log(index, row);
     },
     update(type, index) {
       if (type == -1) {
         this.$store.commit("reduceCount", index);
-        this.Total()
+        this.mytotal();
       } else if (type == 1) {
         this.$store.commit("addCount", index);
-        this.Total()
+        this.mytotal();
       }
+
+      this.axios
+        .post("/UpdateShoppingCar", {
+          tag: type,
+          username: this.$store.state.username,
+          productID: this.tableData[index].productID,
+          productName: this.tableData[index].productName,
+          productPrice: this.tableData[index].productPrice,
+          productType: this.tableData[index].productType,
+          productImg: this.$store.state.productImg
+        })
+        .then(res => {
+          // window.console.log(res);
+        })
+        .catch(error => {
+          window.console.log(error);
+        });
     },
 
     settle() {
@@ -59,24 +122,19 @@ export default {
     },
     del(index) {
       alert("确定删除商品？");
-      this.tableData.splice(index, "");
-      this.$store.commit("delShop", index);
-    },
-    emptyCart() {
-      alert("您要清空购物车吗");
-      this.tableData = []; //清空页面购物车
-      this.$store.commit("emptyCart"); //清空仓库购物车
-    },
-    Total() {
-      let money = 0;
-      this.tableData.forEach(item => {
-        let a = parseInt(item.productPrice) * parseInt(item.productCount);
-        money += a;
-      });
-      this.total = money;
-      console.log(this.total);
-
-      return this.total;
+      this.axios
+        .post("/DeleteFromShoppingCar", {
+          username: this.$store.state.username,
+          productID: this.tableData[index].productID
+        })
+        .then(res => {
+          this.$store.commit("delShop", index);
+          this.tableData.splice(index, 1);
+          console.log(this.$store.state.shoppingCar, this.tableData);
+        })
+        .catch(error => {
+          window.console.log(error);
+        });
     }
   }
 };
@@ -152,5 +210,9 @@ export default {
 }
 .del:hover {
   color: rgb(145, 84, 9);
+}
+img {
+  width: 100px;
+  height: 100px;
 }
 </style>

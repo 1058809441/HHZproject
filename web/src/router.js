@@ -9,10 +9,9 @@ import Users from './views/Users'             //个人中心
 import Center from './views/Center' //个人中心
 import Cart from './views/Cart' //购物车
 import Community from './views/Community'       //社区动态
-// import ProductDetail from './views/ProductDetail'//商品详情
+import ProductDetail from './views/ProductDetail'//商品详情--
 import Aboutus from './views/Aboutus'       //关于我们
 import Home_mid from './views/Home_mid'       //首页中间部分
-
 
 
 export default new Router({
@@ -44,6 +43,8 @@ export default new Router({
             ]
         },
         { path: '/cart', component: Cart },
+        { path: '/productDetail', component: ProductDetail },
+
 
     ]
 })

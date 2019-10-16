@@ -1,20 +1,22 @@
 import Vue from 'vue'
 import App from './App.vue'
+
 // 引入组件库
 import ElementUI from 'element-ui'
 import 'element-ui/lib/theme-chalk/index.css'
 
-//引入ajax插件
+//引入axios插件
 import axios from 'axios'
 Vue.prototype.axios = axios
+
 // 设置请求的根路径
 axios.defaults.baseURL = "http://localhost:8888"
 
 // 引入路由文件
 import router from './router'
 
+// 引入仓库
 import store from './store'
-
 
 Vue.use(ElementUI)
 Vue.config.productionTip = false
