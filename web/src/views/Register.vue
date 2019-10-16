@@ -86,7 +86,7 @@ export default {
               window.console.log(res.data);
               if (res.data.ifLogin == true) {
                 alert("注册成功");
-                this.$router.push("/login");
+                this.$router.push("/users/login");
               }
             })
             .catch(error => {
@@ -103,7 +103,7 @@ export default {
       this.$refs[formName].resetFields();
     },
     toLogin() {
-      this.$router.push("/login");
+      this.$router.push("/users/login");
     }
   },
   mounted() {}
@@ -114,8 +114,6 @@ export default {
   width: 400px;
   text-align: center;
   padding: 100px 100px 100px 50px;
-  /* background-color: white; */
-  /* border: 1px solid white; */
   margin: 0 auto;
 }
 .reg a{

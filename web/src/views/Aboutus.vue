@@ -26,7 +26,7 @@
         </el-carousel-item>
       </el-carousel>-->
     </div>
-    <div class="contain4">
+    <!-- <div class="contain4">
       <h2>创立历史</h2>
       <el-timeline>
         <el-timeline-item timestamp="2018/4/12" placement="top">
@@ -48,7 +48,7 @@
           </el-card>
         </el-timeline-item>
       </el-timeline>
-    </div>
+    </div> -->
   </div>
 </template>
 

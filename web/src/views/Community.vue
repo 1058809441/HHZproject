@@ -6,21 +6,22 @@
       <!-- 用户输入框 -->
       <div class="user_box">
         <div class="user">
-          <h4>有什么新鲜事想告诉大家?</h4>
+          <!-- 用户名 -->
+          <h4>欢迎您：{{username}}</h4>
           <el-input
             type="textarea"
             :autosize="{ minRows: 2, maxRows: 4}"
             placeholder="请输入内容"
-            v-model="textarea2"
-            maxlength="400"
-          >
-           
-          </el-input>
-          <!-- 点击发布会出现全屏加载 -->
-          <div class="kind_right">
+            v-model="addMessage"
+            maxlength="200"
+            show-word-limit
+          ></el-input>
+          <!-- 发布按钮：点击发布会出现全屏加载 -->
+          <div v-if="iflogin" class="kind_right">
             <el-button style="padding: 6px 18px;" type="primary" plain @click="openFullScreen">发布</el-button>
           </div>
-          <div class="kind_left">
+          <!-- 图标部分 -->
+          <!-- <div class="kind_left">
             <el-row :gutter="20">
               <el-col :span="6">
                 <div class="bg-purple">
@@ -47,47 +48,23 @@
                 <div class="bg-purple">
                   <a href="#">
                     <i class="el-icon-picture-outline" style="color:yellow"></i>
-                    <!-- <el-upload
-                      class="upload-demo"
-                      action="https://jsonplaceholder.typicode.com/posts/"
-                      :on-preview="handlePreview"
-                      :on-remove="handleRemove"
-                      :before-remove="beforeRemove"
-                      multiple
-                      :limit="3"
-                      :on-exceed="handleExceed"
-                      :file-list="fileList"
-                    >
-                      <el-button size="small" type="primary">图片</el-button>
-                      <div slot="tip" class="el-upload__tip">只能上传jpg/png文件，且不超过500kb</div>
-                    </el-upload> -->
                     图片
                   </a>
                 </div>
               </el-col>
             </el-row>
-          </div>
+          </div> -->
         </div>
       </div>
-      <!-- 发表的内容 -->
+      <!-- 所有用户发表的内容：从后台获得username、time、content -->
       <div class="contain" v-for="item in users" :key="item.index">
-        <div class="headin">
+        <!-- <div class="headin">
           <img :src="item.pic" />
-        </div>
+        </div>-->
         <div class="aaa">
-          <div class="title" style="font-size:22px">{{item.title}}</div>
+          <div class="title" style="font-size:22px">{{item.username}}</div>
           <span>{{item.time}}</span>
-          <span>{{item.detailtime}}</span>
-          <p>{{item.contain}}</p>
-          <div>
-            <video
-              style="width:265px;"
-              muted
-              autoplay
-              loop
-              src="https://www.021sports.com/video/wangzhangjie.mp4"
-            ></video>
-          </div>
+          <p>{{item.content}}</p>
         </div>
       </div>
     </div>
@@ -98,56 +75,41 @@
 export default {
   data() {
     return {
-      textarea2: "",
-      users: [
-        {
-          pic:
-            "http://storage.360buyimg.com/i.imageUpload/6a645f3763303762333330666536623531353033393731353639323435_mid.jpg",
-          title: "标题",
-          time: "2019.09.26",
-          contain: "zheshi 这是内容萨达四大啊",
-          detailtime: "12:56"
-        },
-        {
-          pic:
-            "http://storage.360buyimg.com/i.imageUpload/6a645f3763303762333330666536623531353033393731353639323435_mid.jpg",
-          title: "标题",
-          time: "2019.09.26",
-          contain: "zheshi 这是内容萨达四大啊",
-          detailtime: "12:56"
-        },
-        {
-          pic:
-            "http://storage.360buyimg.com/i.imageUpload/6a645f3763303762333330666536623531353033393731353639323435_mid.jpg",
-          title: "标题",
-          time: "2019.09.26",
-          contain: "zheshi 这是内容萨达四大啊",
-          detailtime: "12:56"
-        },
-        {
-          pic:
-            "http://storage.360buyimg.com/i.imageUpload/6a645f3763303762333330666536623531353033393731353639323435_mid.jpg",
-          title: "标题",
-          time: "2019.09.26",
-          contain: "zheshi 这是内容萨达四大啊",
-          detailtime: "12:56"
-        }
-      ],
+      addMessage: [], //用户输入信息
+      users: this.$store.state.allMessage, //从后台获得所有用户数据：姓名、时间、内容
+      username: this.$store.state.username, //当前用户：姓名
       // 上传图片
-      fileList: []
+      fileList: [],
+      iflogin:this.$store.state.ifLogin,
     };
   },
+
+  created() {
+    // this.getAllMessage();
+  },
+
   methods: {
+   
+
+    // // 11、获取全部的动态，所有用户的信息
+    // getAllMessage() {
+    //   this.axios
+    //     .get("/AllMessage") //接口：/AllMessage，使用get请求
+    //     .then(res => {
+    //       window.console.log(res.data); //检查从后台获得的数据是否成功，并打印
+    //       this.users = res.data; //把从后台得到的数据传给data里的users
+    //     })
+    //     .catch(error => {
+    //       window.console.log(error);
+    //     });
+    // },
+
     // 显示全屏加载部分的方法
     openFullScreen() {
       this.fullscreenLoading = true;
       setTimeout(() => {
         this.fullscreenLoading = false;
-<<<<<<< HEAD
-      }, 0);
-=======
       }, 1000);
->>>>>>> 8d608c2faa1844e4443d5000b40954ff82ea76cb
     },
     openFullScreen() {
       const loading = this.$loading({
@@ -159,24 +121,29 @@ export default {
       setTimeout(() => {
         loading.close();
       }, 1000);
-    },
-    // 上传图片
-    // handleRemove(file, fileList) {
-    //   console.log(file, fileList);
-    // },
-    // handlePreview(file) {
-    //   console.log(file);
-    // },
-    // handleExceed(files, fileList) {
-    //   this.$message.warning(
-    //     `当前限制选择 3 个文件，本次选择了 ${
-    //       files.length
-    //     } 个文件，共选择了 ${files.length + fileList.length} 个文件`
-    //   );
-    // },
-    // beforeRemove(file, fileList) {
-    //   return this.$confirm(`确定移除 ${file.name}？`);
-    // }
+      // 点击发布判断是否登录
+
+      console.log(this.addMessage); //获取到用户输入的信息
+      // 12、点击发动态按钮
+      // app.post('/AddMessage',
+      // 请求数据的格式：
+      // { username:zxz,content:this.addMessage }
+      // 返回数据的格式：
+      // { myMessage：新的我的动态的数组，allMessage：新的全部动态的数组 }
+
+      this.axios
+        .post("/AddMessage", { username: this.$store.state.username, content: this.addMessage }) //使用post请求，接口：/AddMessage;
+        .then(res => {
+          window.console.log(res.data); //检查从后台获得的数据是否成功，并打印
+          //修改store；
+
+          this.$store.commit("updateAllMessage", res.data.allMessage);
+          this.users = res.data.allMessage; //把从后台得到的数据传给data里的users
+        })
+        .catch(error => {
+          window.console.log(error);
+        });
+    }
   }
 };
 </script>
@@ -204,7 +171,7 @@ export default {
     }
   }
   .contain {
-    height: 300px;
+    // height: 300px;
     background: #d3dce6;
     border-radius: 15px;
     margin: 10px 10px 10px 10px;

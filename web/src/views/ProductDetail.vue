@@ -36,7 +36,15 @@ export default {
     console.log(data);
   },
   methods: {
-    //接口：/UpdateShoppingCar，使用post请求
+    //注意methods的写法！！！不加（）
+    // 函数执行：点击事件触发/调用触发
+    //     7、增减商品到购物车
+    // 注释1：四种商品（预定课程course、预约教练coach、健身用品tool、健身套餐card），当发生购物车增减操作时，判断商品种类，除了tool，其它的数量只能为1
+    // 注释2：商品详情页只能  将原来购物车中没有的商品新加入购物车  或者  将原本购物车中商品的数量增加 1
+    // 注释3：购物车页 可以增加或者减少已有的商品，通过判断种类，使得除了tool以外其他商品都只能为1
+    // 注释4：锁定购物车的商品数量不能小于1，删除只能点击删除按钮
+    // app.post('/UpdateShoppingCar',
+    // 后台请求数据格式：（前端传值过去）
     // { tag：数字 1 是增加数字 -1 是减少， username，productID，productName，productPrice，productType，productImg }
     toCAr() {
       this.axios
@@ -48,9 +56,9 @@ export default {
           productPrice: this.productPrice,
           productType: this.productType,
           productImg: this.productImg
-        })
+        }) //接口：/UpdateShoppingCar，使用post请求
         .then(res => {
-          window.console.log(res.data);
+          window.console.log(res.data); //检查从后台获得的数据是否成功，并打印
           let len = this.$store.state.shoppingCar.length;
           var tag = true;
           for (let i = 0; i < len; i++) {

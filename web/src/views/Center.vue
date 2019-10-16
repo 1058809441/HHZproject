@@ -5,16 +5,30 @@
         <p>我的账号</p>
         <hr />
         <div class="user">
-          <img :src="src" />
-
-          <p>用户名：{{username}}</p>
+          <!-- 头像上传组件 -->
+          <div class="avatar">
+            <el-upload
+              class="avatar-uploader"
+              action="http://localhost:8888/upload"
+              data={username:this.$store.state.username}
+              :show-file-list="false"
+              :on-success="handleAvatarSuccess"
+              :before-upload="beforeAvatarUpload"
+            >
+              <img v-if="imageUrl" :src="imageUrl" class="avatar" />
+              <i v-else class="el-icon-plus avatar-uploader-icon"></i>
+            </el-upload>
+          </div>
+          <!-- v-html="username"  -->
+          <p>欢迎您：{{username}}</p>  
+          <!-- <p>您已经消费：元</p> -->
         </div>
       </div>
-      <div class="contentson">
+      <!-- <div class="contentson">
         <p>我的钱包</p>
         <hr />
         <p>余额：￥1000</p>
-      </div>
+      </div> -->
       <!--  -->
       <div class="contentson">
         <p>我的订单</p>
@@ -36,38 +50,21 @@
   </div>
 </template>
 <script>
-<<<<<<< HEAD
-<<<<<<< HEAD
-
-=======
-// import '../Utils/webuploader/webuploader.css'
-// import '../Utils/webuploader/webuploader.css'
-// import '../Utils/webuploader/Uploader.swf'
-// import "http://cdn.bootcss.com/jquery/1.11.1/jquery.min.js"
->>>>>>> 8d608c2faa1844e4443d5000b40954ff82ea76cb
-=======
->>>>>>> hm的更新9.22
 export default {
   data() {
     return {
-      src:
-        "http://storage.360buyimg.com/i.imageUpload/6a645f3763303762333330666536623531353033393731353639323435_mid.jpg",
-      username: "tony",
-      tableData: []
+      username:this.$store.state.username,
+      tableData: [],
+      imageUrl: this.$store.state.userData.headImg
     };
   },
   created() {
     this.getTableData();
   },
   methods: {
-<<<<<<< HEAD
-    fn() {    },
-=======
->>>>>>> hm的更新9.22
     getTableData() {
-      
       this.axios
-        .post("/orders")
+        .post("/UserOrder",{username:this.$store.state.username})
         .then(res => {
           window.console.log(res.data);
           this.tableData = res.data;
@@ -75,6 +72,22 @@ export default {
         .catch(error => {
           window.console.log(error);
         });
+    },
+    // 头像上传
+    handleAvatarSuccess(res, file) {
+      this.imageUrl = URL.createObjectURL(file.raw);
+    },
+    beforeAvatarUpload(file) {
+      const isJPG = file.type === "image/jpeg";
+      const isLt2M = file.size / 1024 / 1024 < 2;
+
+      if (!isJPG) {
+        this.$message.error("上传头像图片只能是 JPG 格式!");
+      }
+      if (!isLt2M) {
+        this.$message.error("上传头像图片大小不能超过 2MB!");
+      }
+      return isJPG && isLt2M;
     }
   }
 };
@@ -93,7 +106,9 @@ export default {
 .user {
   display: flex;
 }
-
+.user p{
+  padding-left: 50px;
+}
 .order {
   display: flex;
   background-color: white;
@@ -111,5 +126,35 @@ export default {
 }
 .myoders p {
   width: 250px;
+}
+/* 头像上传 */
+/* .avatar-uploader .el-upload {
+  border: 1px solid #d9d9d9;
+  border-radius: 50%;
+  cursor: pointer;
+  position: relative;
+  overflow: hidden;
+} */
+.avatar-uploader .el-upload:hover {
+  border-color: #409eff;
+}
+.avatar-uploader-icon {
+  font-size: 28px;
+  color: #8c939d;
+  width: 100px;
+  height: 100px;
+  line-height: 100px;
+  text-align: center;
+}
+.avatar {
+  width: 100px;
+  height: 100px;
+  display: block;
+
+  border: 1px dashed #d9d9d9;
+  border-radius: 6px;
+  cursor: pointer;
+  position: relative;
+  overflow: hidden;
 }
 </style>

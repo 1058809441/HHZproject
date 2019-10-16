@@ -72,6 +72,7 @@ export default {
               window.console.log(res.data);
               if (res.data.ifLogin == true) {
                 alert("登录成功");
+                this.$store.state.userData=res.data.userInfo
                 this.$store.state.username=res.data.username
                 this.$store.state.ifLogin=res.data.ifLogin
                 this.$store.state.shoppingCar=res.data.shoppingCar
@@ -95,7 +96,7 @@ export default {
       this.$refs[formName].resetFields();
     },
     toRegister() {
-      this.$router.push("/register");
+      this.$router.push("/users/register");
     }
   },
   mounted() {}

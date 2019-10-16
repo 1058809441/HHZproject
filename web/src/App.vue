@@ -1,5 +1,10 @@
 <template>
   <div id="app">
+    <!-- <router-link to='/home'>首页</router-link> -->
+    <!-- <router-link to='/login' tag='span'>登录</router-link> -->
+    <!-- <router-link to='/register'>注册</router-link> -->
+    <!-- <router-link to='/users'>个人中心</router-link> -->
+    <!-- 这是vue-router提供的占位符，由路由规则匹配到的组件就会展示在这里面 -->
     <router-view></router-view>
   </div>
 </template>
@@ -14,7 +19,7 @@ export default {
 body {
   padding: 0;
   margin: 0;
-  background-color: rgb(17, 132, 248);
+  background-color: gray;
 }
 #app {
   color: black;
